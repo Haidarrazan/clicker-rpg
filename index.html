@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker RPG Battle</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Clicker RPG Battle</h1>
+        
+        <!-- Player Stats -->
+        <div class="player-section">
+            <h2>Status Pemain</h2>
+            <div class="stats">
+                <div class="stat">
+                    <label>Level: <span id="player-level">1</span></label>
+                </div>
+                <div class="stat">
+                    <label>STR: <span id="player-str">10</span></label>
+                </div>
+                <div class="stat">
+                    <label>DEX: <span id="player-dex">10</span></label>
+                </div>
+                <div class="stat">
+                    <label>INT: <span id="player-int">10</span></label>
+                </div>
+                <div class="stat">
+                    <label>VIT: <span id="player-vit">10</span></label>
+                </div>
+                <div class="stat">
+                    <label>HP: <span id="player-hp">100</span>/<span id="player-max-hp">100</span></label>
+                </div>
+                <div class="stat">
+                    <label>Koin: <span id="player-coins">0</span></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clicking Area -->
+        <div class="click-section">
+            <h3>Klik untuk Latihan!</h3>
+            <div class="click-bar">
+                <div id="click-progress" class="progress-fill"></div>
+            </div>
+            <button id="click-area" class="click-button">KLIK DISINI!</button>
+        </div>
+
+        <!-- Equipment -->
+        <div class="equipment-section">
+            <h3>Peralatan</h3>
+            <div class="equipment">
+                <div>Senjata: <span id="current-weapon">Tidak Ada</span></div>
+                <div>Armor: <span id="current-armor">Tidak Ada</span></div>
+            </div>
+        </div>
+
+        <!-- Battle Section -->
+        <div class="battle-section">
+            <h3>Pertarungan</h3>
+            <div class="enemy-info" id="enemy-info" style="display: none;">
+                <h4 id="enemy-name">Enemy</h4>
+                <div class="enemy-stats">
+                    <div>HP: <span id="enemy-hp">0</span>/<span id="enemy-max-hp">0</span></div>
+                    <div>STR: <span id="enemy-str">0</span></div>
+                </div>
+                <div class="enemy-health-bar">
+                    <div id="enemy-health-fill" class="health-fill"></div>
+                </div>
+            </div>
+            <button id="find-enemy">Cari Musuh</button>
+            <button id="attack-btn" style="display: none;">Serang!</button>
+        </div>
+
+        <!-- Shop Section -->
+        <div class="shop-section">
+            <h3>Toko</h3>
+            <div class="shop-items">
+                <div class="shop-item">
+                    <h4>Pedang Kayu</h4>
+                    <p>STR +5</p>
+                    <p>Harga: 50 koin</p>
+                    <button onclick="shop.buyItem('weapon', 'Pedang Kayu', 5, 50)">Beli</button>
+                </div>
+                <div class="shop-item">
+                    <h4>Pedang Besi</h4>
+                    <p>STR +10</p>
+                    <p>Harga: 150 koin</p>
+                    <button onclick="shop.buyItem('weapon', 'Pedang Besi', 10, 150)">Beli</button>
+                </div>
+                <div class="shop-item">
+                    <h4>Baju Baja</h4>
+                    <p>VIT +15</p>
+                    <p>Harga: 200 koin</p>
+                    <button onclick="shop.buyItem('armor', 'Baju Baja', 15, 200)">Beli</button>
+                </div>
+                <div class="shop-item">
+                    <h4>Obat Penyembuh</h4>
+                    <p>Memulihkan 50 HP</p>
+                    <p>Harga: 30 koin</p>
+                    <button onclick="shop.buyItem('potion', 'Obat Penyembuh', 50, 30)">Beli</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Battle Log -->
+        <div class="log-section">
+            <h3>Log Pertarungan</h3>
+            <div id="battle-log" class="log"></div>
+        </div>
+    </div>
+
+    <script src="js/player.js"></script>
+    <script src="js/enemy.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/combat.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
