@@ -492,3 +492,207 @@ button:disabled {
         0 0 15px currentColor,
         0 0 20px currentColor;
 }
+
+/* Desktop Landscape Layout */
+@media (min-width: 1024px) {
+    body {
+        padding: 20px 50px 0 50px;
+        background: var(--bg-dark);
+        background-image: 
+            radial-gradient(circle at 10% 20%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 90% 80%, rgba(245, 87, 108, 0.05) 0%, transparent 50%),
+            linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(10, 10, 10, 0.95));
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 20px;
+        align-items: start;
+    }
+
+    /* Grid layout untuk desktop */
+    .player-section {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        min-height: 300px;
+    }
+
+    .click-section {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .equipment-section {
+        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+        min-height: 300px;
+    }
+
+    .battle-section {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        min-height: 250px;
+    }
+
+    .shop-section {
+        grid-column: 2 / 4;
+        grid-row: 2 / 3;
+        min-height: 250px;
+    }
+
+    .log-section {
+        grid-column: 1 / 4;
+        grid-row: 3 / 4;
+        max-height: 200px;
+    }
+
+    /* Stats dalam mode landscape */
+    .stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .stat {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    .stat span {
+        font-size: 1.2rem;
+    }
+
+    /* Click button lebih besar di desktop */
+    .click-button {
+        max-width: 250px;
+        padding: 35px;
+        font-size: 1.8rem;
+        margin: 0 auto;
+    }
+
+    /* Shop items grid untuk desktop */
+    .shop-items {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .shop-item {
+        padding: 20px;
+    }
+
+    .shop-item h4 {
+        font-size: 1rem;
+    }
+
+    .shop-item p {
+        font-size: 0.9rem;
+    }
+
+    /* Battle section styling */
+    .enemy-info {
+        padding: 15px;
+    }
+
+    /* Log section lebih compact */
+    .log {
+        max-height: 150px;
+        padding: 15px;
+    }
+
+    .log-entry {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    h1 {
+        grid-column: 1 / 4;
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+
+    h2, h3 {
+        font-size: 1.3rem;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+    }
+
+    /* Custom scrollbar untuk desktop */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-color);
+    }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1440px) {
+    body {
+        padding: 20px 100px 0 100px;
+    }
+
+    .container {
+        gap: 30px;
+    }
+
+    .shop-items {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* Prevent horizontal scroll */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Background pattern for desktop */
+@media (min-width: 1024px) {
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.01) 10px,
+                rgba(255, 255, 255, 0.01) 20px
+            );
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+}
