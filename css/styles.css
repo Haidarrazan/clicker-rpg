@@ -1,3 +1,26 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* CSS Variables untuk tema */
+:root {
+    --primary-color: #00ff88;
+    --secondary-color: #ff006e;
+    --accent-color: #ffbe0b;
+    --bg-dark: #0a0a0a;
+    --bg-card: #1a1a2e;
+    --bg-hover: #16213e;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --border-color: #2a2a3e;
+    --success-color: #00ff88;
+    --danger-color: #ff0040;
+    --warning-color: #ffbe0b;
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --shadow-primary: 0 8px 32px rgba(0, 255, 136, 0.2);
+    --shadow-secondary: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,152 +28,467 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
-    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(245, 87, 108, 0.1) 0%, transparent 50%);
+    color: var(--text-primary);
     line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Animated background particles */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20% 30%, var(--primary-color), transparent),
+        radial-gradient(2px 2px at 60% 70%, var(--secondary-color), transparent),
+        radial-gradient(1px 1px at 50% 50%, var(--accent-color), transparent);
+    background-size: 200px 200px, 300px 300px, 250px 250px;
+    animation: sparkle 20s linear infinite;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+@keyframes sparkle {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-1000px) rotate(360deg); }
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    position: relative;
+    z-index: 1;
 }
 
-h1, h2, h3, h4 {
+h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+    text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { filter: brightness(1); }
+    to { filter: brightness(1.2); }
+}
+
+h2, h3, h4 {
+    font-family: 'Orbitron', monospace;
+    color: var(--primary-color);
     margin-bottom: 15px;
-    color: #ffd700;
+    font-weight: 700;
 }
 
+/* Card styling */
 .player-section, .click-section, .equipment-section, 
 .battle-section, .shop-section, .log-section {
-    background-color: #2a2a2a;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    border: 1px solid #444;
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-secondary);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
+.player-section::before, .click-section::before, 
+.equipment-section::before, .battle-section::before, 
+.shop-section::before, .log-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+}
+
+.player-section:hover, .click-section:hover, 
+.equipment-section:hover, .battle-section:hover, 
+.shop-section:hover, .log-section:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-primary);
+}
+
+/* Stats grid */
 .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
 }
 
 .stat {
-    background-color: #333;
-    padding: 10px;
-    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.stat:hover::before {
+    left: 100%;
+}
+
+.stat label {
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.stat span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-family: 'Orbitron', monospace;
+}
+
+/* Click section styling */
+.click-section {
+    text-align: center;
+    background: var(--gradient-secondary);
+    color: white;
+}
+
+.click-section h3 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
 }
 
 .click-bar {
     width: 100%;
-    height: 20px;
-    background-color: #444;
-    border-radius: 10px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .progress-fill {
     height: 100%;
-    background-color: #4CAF50;
+    background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
     width: 0%;
-    transition: width 0.1s;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
 }
 
 .click-button {
     width: 100%;
-    padding: 20px;
-    font-size: 24px;
-    background-color: #4CAF50;
-    color: white;
+    max-width: 300px;
+    padding: 25px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--bg-dark);
     border: none;
-    border-radius: 10px;
+    border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.click-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.click-button:active::before {
+    width: 300px;
+    height: 300px;
 }
 
 .click-button:hover {
-    background-color: #45a049;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 255, 136, 0.4);
 }
 
 .click-button:active {
-    background-color: #3d8b40;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
 }
 
-.shop-items {
+/* Equipment styling */
+.equipment-section {
+    background: linear-gradient(135deg, rgba(255, 190, 11, 0.1), rgba(255, 190, 11, 0.05));
+}
+
+.equipment {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
 }
 
-.shop-item {
-    background-color: #333;
+.equipment div {
+    background: rgba(255, 255, 255, 0.05);
     padding: 15px;
-    border-radius: 5px;
-    text-align: center;
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-color);
 }
 
-.shop-item button {
-    padding: 5px 15px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* Battle section styling */
+.battle-section {
+    background: linear-gradient(135deg, rgba(255, 0, 64, 0.1), rgba(255, 0, 64, 0.05));
 }
 
-.shop-item button:hover {
-    background-color: #45a049;
+.enemy-info {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 0, 64, 0.3);
 }
 
 .enemy-health-bar {
     width: 100%;
-    height: 20px;
-    background-color: #444;
-    border-radius: 10px;
+    height: 25px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
     overflow: hidden;
-    margin: 10px 0;
+    margin: 15px 0;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .health-fill {
     height: 100%;
-    background-color: #ff4444;
+    background: linear-gradient(90deg, var(--danger-color), var(--warning-color));
     width: 100%;
-    transition: width 0.3s;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 0, 64, 0.5);
+}
+
+/* Shop styling */
+.shop-section {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
+}
+
+.shop-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.shop-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.shop-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+}
+
+.shop-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
+}
+
+.shop-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.shop-item p {
+    color: var(--text-secondary);
+    margin: 5px 0;
+}
+
+.shop-item button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.shop-item button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Log styling */
+.log-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
 }
 
 .log {
-    max-height: 200px;
+    max-height: 300px;
     overflow-y: auto;
-    background-color: #333;
-    padding: 10px;
-    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.log::-webkit-scrollbar {
+    width: 8px;
+}
+
+.log::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.log::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
 }
 
 .log-entry {
-    margin-bottom: 5px;
-    padding: 5px;
-    border-left: 3px solid #ffd700;
-    padding-left: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-left: 3px solid var(--primary-color);
+    padding-left: 15px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 0 10px 10px 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    animation: slideIn 0.3s ease;
 }
 
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Button styling */
 button {
-    padding: 10px 20px;
+    padding: 12px 30px;
     margin: 5px;
-    background-color: #4CAF50;
+    background: var(--gradient-primary);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
-button:hover {
-    background-color: #45a049;
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 button:disabled {
-    background-color: #666;
+    background: #444;
     cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .player-section, .click-section, .equipment-section, 
+    .battle-section, .shop-section, .log-section {
+        padding: 20px;
+    }
+    
+    .stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .shop-items {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Loading animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Neon effect for special elements */
+.neon-text {
+    text-shadow: 
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 15px currentColor,
+        0 0 20px currentColor;
 }
