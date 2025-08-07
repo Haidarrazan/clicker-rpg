@@ -207,23 +207,20 @@ h2, h3, h4 {
     box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
 }
 
+/* make the click area a red circle */
 .click-button {
-    width: 100%;
-    max-width: 300px;
-    padding: 25px;
-    font-size: 1.5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: var(--bg-dark);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    position: relative;
-    overflow: hidden;
+    width: 200px;          /* fixed size */
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, #ff4d4d, #cc0000);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;        /* center in its grid cell */
 }
 
 .click-button::before {
@@ -697,18 +694,3 @@ html, body {
     }
 }
 
-/* make the click area a red circle */
-.click-button {
-    width: 200px;          /* fixed size */
-    height: 200px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 50% 50%, #ff4d4d, #cc0000);
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;        /* center in its grid cell */
-}
