@@ -696,3 +696,19 @@ html, body {
         z-index: 1;
     }
 }
+
+/* make the click area a red circle */
+.click-button {
+    width: 200px;          /* fixed size */
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, #ff4d4d, #cc0000);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;        /* center in its grid cell */
+}
